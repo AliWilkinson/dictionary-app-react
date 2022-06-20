@@ -1,0 +1,8 @@
+h2 {
+  margin: 4% 10%;
+  padding: 30px;
+  max-width: 90%;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}

@@ -1,9 +1,23 @@
+:root {
+  --background-color: rgb(255, 255, 255, 0.8);
+  --border-radius: 6px;
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 .search {
-  margin: 10%;
+  margin: 10% 10% 1%;
   padding: 30px;
   max-width: 90%;
-  background-color: rgb(255, 255, 255);
-  border-radius: 6px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.search-bar {
+  background-color: var(--background-color);
+  border-color: aliceblue;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 80%;
 }
