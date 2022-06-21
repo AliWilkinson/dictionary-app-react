@@ -7,7 +7,7 @@ export default function App() {
     <div className="App">
       <div className="container">
         <header></header>
-        <Dictionary />
+        <Dictionary defaultKeyword="volcano" />
         <OpenSource />
       </div>
     </div>

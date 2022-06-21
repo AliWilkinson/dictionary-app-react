@@ -3,9 +3,10 @@ import axios from "axios";
 import Results from "./results";
 import "./dictionary.css";
 
-export default function Dictionary() {
-  let [keyword, setKeyword] = useState("");
+export default function Dictionary(props) {
+  let [keyword, setKeyword] = useState(props.defaultKeyword);
   let [results, setResults] = useState(null);
+  let [loaded, setLoaded] = useState(false);
 
   function handleKeywordChange(event) {
     setKeyword(event.target.value);
@@ -16,27 +17,41 @@ export default function Dictionary() {
     setResults(response.data[0]);
   }
 
-  function search(event) {
-    event.preventDefault();
-    alert(`searching for ${keyword}`);
-
+  function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
   }
 
-  return (
-    <div className="dictionary">
-      <div className="search">
-        <h5>Type a word you want to look up</h5>
-        <form onSubmit={search}>
-          <input
-            className="search-bar"
-            type="search"
-            onChange={handleKeywordChange}
-          />
-        </form>
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function load() {
+    setLoaded(true);
+    search();
+  }
+
+  if (loaded) {
+    return (
+      <div className="dictionary">
+        <div className="search">
+          <h5>Type a word you want to look up</h5>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="search-bar"
+              type="search"
+              onChange={handleKeywordChange}
+              defaultValue={props.defaultKeyword}
+            />
+          </form>
+          <small>i.e. stone, pasta, horse, cloud...</small>
+        </div>
+        <Results results={results} />
       </div>
-      <Results results={results} />
-    </div>
-  );
+    );
+  } else {
+    load();
+    return null;
+  }
 }
